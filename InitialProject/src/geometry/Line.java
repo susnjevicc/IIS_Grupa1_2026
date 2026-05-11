@@ -1,10 +1,11 @@
 package geometry;
 
-public class Line {
+import java.awt.Graphics;
+
+public class Line extends Shape {
 
 	private Point startPoint;
 	private Point endPoint;
-	private boolean selected;
 
 	public Line() {
 
@@ -38,6 +39,48 @@ public class Line {
 		return false;
 	}
 
+	public boolean contains(int x, int y) {
+		Point sadrziTacku = new Point(x, y);
+		return this.startPoint.distance(sadrziTacku) + this.endPoint.distance(sadrziTacku) - lenght() <= 2;
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+
+	}
+
+	@Override
+	public void moveTo(int x, int y) {
+		startPoint.moveTo(x,y);
+		endPoint.moveTo(x,y);
+		//dobicemo tacku 
+		//
+
+	}
+
+	@Override
+	public void moveBy(int x, int y) {
+		startPoint.moveBy(x,y);
+		endPoint.moveBy(x,y);
+		// 
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Line) {
+			//duzina linije nad kojom pozivamo compareTo
+			double duzinaThisLinije = this.lenght();
+			//mora downcast jer je lengthh samo u Line a ne i u Object 
+			//a kompajler ga gleda kao Object iako smo prosledili new Line
+			double duzinaParametarLinije = ((Line) o).lenght();
+			
+			return (int)(duzinaThisLinije - duzinaParametarLinije);
+		}
+		
+		return 0;
+	}
+	
 	public Point getStartPoint() {
 		return startPoint;
 	}
@@ -52,14 +95,6 @@ public class Line {
 
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
-	}
-
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 
 }

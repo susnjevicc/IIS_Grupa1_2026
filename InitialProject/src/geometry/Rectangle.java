@@ -1,11 +1,12 @@
 package geometry;
 
-public class Rectangle {
+import java.awt.Graphics;
+
+public class Rectangle extends Shape {
 
 	private Point upperLeftPoint;
 	private int width;
 	private int height;
-	private boolean selected;
 
 	public Rectangle() {
 
@@ -22,12 +23,12 @@ public class Rectangle {
 		this.selected = selected;
 	}
 
-	// Povrsina pravougaonika P=w*h
+// Povrsina pravougaonika P=w*h
 	public int area() {
 		return width * height;
 	}
 
-	// Obim pravougaonika O=2*(w+h)
+// Obim pravougaonika O=2*(w+h)
 	public int circumference() {
 		return 2 * (width + height);
 	}
@@ -45,6 +46,42 @@ public class Rectangle {
 			}
 		}
 		return false;
+	}
+
+	public boolean contains(int x, int y) {
+		return (x >= this.upperLeftPoint.getX() && x <= this.upperLeftPoint.getX() + width
+				&& y >= this.upperLeftPoint.getY() && y <= this.upperLeftPoint.getY() + height);
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.drawRect(upperLeftPoint.getX(), upperLeftPoint.getY(), width, height);
+
+	}
+
+	@Override
+	public void moveTo(int x, int y) {
+		upperLeftPoint.moveTo(x, y);
+
+	}
+
+	@Override
+	public void moveBy(int x, int y) {
+		upperLeftPoint.moveBy(x, y);
+		
+
+	}
+	
+	@Override
+	public int compareTo(Object o) {
+		if(o instanceof Rectangle) {
+			double povrsinaThis = this.area();
+			double povrsinaParametra = ((Rectangle) o).area();
+			
+			return (int)(povrsinaThis - povrsinaParametra);
+		}
+		
+		return 0;
 	}
 
 	public Point getUpperLeftPoint() {
@@ -69,14 +106,6 @@ public class Rectangle {
 
 	public void setHeight(int height) {
 		this.height = height;
-	}
-
-	public boolean isSelected() {
-		return selected;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 
 }

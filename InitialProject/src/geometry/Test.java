@@ -26,7 +26,7 @@ public class Test {
 		p.setX(point2.getY());
 		System.out.println("Koordinata y point2: " + point2.getY());
 		System.out.println("Koordinata x p: " + p.getX());
-		
+
 		//promeni y koordinatu tacke point2 na 50
 		point2.setY(50);
 		System.out.println("Koordinata y point2: " + point2.getY());
@@ -78,7 +78,7 @@ public class Test {
 		// povrsine pravougaonika r1 i y koordinate pocetne tacke linije l1
 
 		//Vezbe 5
-		
+
 		/*
 		 * Postaviti x koordinatu centra ranije kreiranog kruga circle1 
 		 * na vrednost zbira vrednosti poluprečnika kruga circle1 i 
@@ -90,20 +90,46 @@ public class Test {
 		c.setCenter(new Point());
 		c.setRadius(10);
 		c.getCenter().setX((int)(c.getRadius()+l1.getStartPoint().distance(l1.getEndPoint())));
-	
+
 		Point p3 = new Point(10, 20);
 		p3.setSelected(true);
-		
+
 		Point p4 = new Point(10,20,true);
 		System.out.println(p3.toString());
-		
+
 		System.out.println(p3.equals(p4));
 		System.out.println(p3==p4);
-		
+
 		p3 = p4;
-		
+
 		System.out.println(p3==p4);
 
+		// npr p4 je tacka klika
+		// da li tacka p3 sadrzi tacku klika?
+		p3.contains(p4.getX(), p4.getY());
+
+		Donut donut1 = new Donut();
+		donut1.setCenter(p4);
+		Circle donut2 = new Donut(); // i ovo je dozvoljeno
+		donut2.setCenter(p3);
+		//Point donut3 = new Donut(); -- ne moze jer Donut nije tacka
+		donut1.equals(donut2); // mogu i pre override jer je Donut Circle
+		donut1.getRadius();
+		donut1.getInnerRadius();
+		donut1.isSelected();
+		System.out.println(donut1);
+		
+		// Vezbe 6
+		// ne mozemo kreirati objekat klase Shape jer je apstraktna
+		// Shape shape1 = new Shape();
+		// sa leve strane kod deklaracije moze apstraktna klasa ali sa desne mora
+		// konkretna implementacija apst klase
+		Shape shape1 = new Point(50,60, true);
+		// kompajler dozvoljava shape1.toString() jer je toString iz Object klase
+		// a interpreter prilikom izvrsavanja poziva toString iz Pointa zbog new Point()
+		// a tamo je override metode
+		System.out.println(shape1.toString());
+		System.out.println(shape1.isSelected());
 	}
 
 }
