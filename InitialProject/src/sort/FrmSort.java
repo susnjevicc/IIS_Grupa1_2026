@@ -17,6 +17,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -31,7 +33,7 @@ public class FrmSort extends JFrame {
 	private DefaultListModel<Donut> dlm = new DefaultListModel<Donut>(); // dinamicki dodeljuje elemente u listu, da ih
 																			// ne pisemo rucno u listu
 	private DlgSort dialog = new DlgSort(); // objekat dijaloga koji se ponovo koristi
-	private Stack<Donut> stack = new Stack<Donut>(); // pravim stek kako bih mogla da koristim LIFO princip
+	private ArrayList<Donut> DonutList = new ArrayList<Donut>();
 
 	/**
 	 * Launch the application.
@@ -67,20 +69,20 @@ public class FrmSort extends JFrame {
 		pnlCentar.setBackground(new Color(238, 238, 247));
 		contentPane.add(pnlCentar, BorderLayout.CENTER);
 
-		JScrollPane scrPnlStack = new JScrollPane();
-		pnlCentar.add(scrPnlStack);
+		JScrollPane scrPnlSort = new JScrollPane();
+		pnlCentar.add(scrPnlSort);
 
-		JList lstStack = new JList();
-		scrPnlStack.setViewportView(lstStack); // prvo se dodaje scrollPane a zatim lista u njega (lista nema mogucnost
+		JList lstSort = new JList();
+		scrPnlSort.setViewportView(lstSort); // prvo se dodaje scrollPane a zatim lista u njega (lista nema mogucnost
 												// skrolovanja)
 
-		lstStack.setModel(dlm); // da bi spojili listu i default list model
+		lstSort.setModel(dlm); // da bi spojili listu i default list model
 
 		JPanel pnlSouth = new JPanel();
 		pnlSouth.setBackground(new Color(238, 238, 247));
 		contentPane.add(pnlSouth, BorderLayout.SOUTH);
 
-		// dodavanje na stek
+		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.setFont(new Font("Arial", Font.BOLD, 10));
 		btnAdd.addActionListener(new ActionListener() {
@@ -99,8 +101,8 @@ public class FrmSort extends JFrame {
 
 						// pravim objekat kom ce biti dodeljene vrednosti (konstruktor je iz donut)
 						Donut donut = new Donut(new Point(x, y), radius, innerRadius);
-						stack.push(donut);// pusuje objekat na vrh steka
-						dlm.add(0, donut);// dodaje objekat u listu LIFO princip
+						DonutList.add(donut);// pusuje objekat na vrh steka
+						dlm.addElement(donut);// dodaje objekat u listu LIFO princip
 
 						// praznjenje polja dijaloga nakon uspesnog unosa
 						dialog.getTxtX().setText("");
@@ -119,13 +121,32 @@ public class FrmSort extends JFrame {
 
 		btnAdd.setBackground(new Color(179, 179, 217));
 		pnlSouth.add(btnAdd);
-
 		
+		JButton btnSort = new JButton("Sort");
+		btnSort.setForeground(new Color(0, 0, 0));
+		btnSort.setBackground(new Color(248, 252, 3));
+		btnSort.setFont(new Font("Arial", Font.BOLD, 10));
+		btnSort.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DonutList.sort(null); // kad se stavi null sortira se u rastucem redosledu, dinamicka metoda sort je
+				                     // iz klase ArrayList
+				Collections.reverse(DonutList);  // obrce raspored, sada sortira po opadajucem
+				dlm.clear(); // kljucna za pravilno resetovanje dlm-a pre nego sto se doda nova, sortirana i
+				             // preokrenuta lista elemenata
+				for (int i = 0; i < DonutList.size(); i++) {
+					dlm.addElement(DonutList.get(i));   // sortira ih po compareTo - a compareTo poredi u donut po
+									// povrsini - iz interfejsa Comparable (on je iz Objecta a primenjen je u Shape)
+									
+				}
+			}
+		});
 
-		JLabel lblNewLabel = new JLabel("DONUT SORT");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
-		contentPane.add(lblNewLabel, BorderLayout.NORTH);
-	}
+		pnlSouth.add(btnSort);
+
+	JLabel lblNewLabel = new JLabel("DONUT SORT");
+    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    lblNewLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 12));
+    contentPane.add(lblNewLabel,BorderLayout.NORTH);
+}
 
 }
