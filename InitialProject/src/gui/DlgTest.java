@@ -126,8 +126,10 @@ public class DlgTest extends JDialog {
 							int red = Integer.parseInt(txtRed.getText());
 							int green = Integer.parseInt(txtGreen.getText());
 							int blue = Integer.parseInt(txtBlue.getText());
-							// treba odraditi za sve boje
-							if (red >= 0 && red < 256) {
+							
+							if (red >= 0 && red < 256 &&
+							(green >= 0 && green <= 255) && 
+		                    (blue >= 0 && blue <= 255)) {
 								isOk = true;
 							} else {
 								JOptionPane.showMessageDialog(null, "Vrednosti moraju biti u opsegu", "Poruka",

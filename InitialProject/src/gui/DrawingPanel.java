@@ -1,14 +1,14 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Graphics; //virtuelna cetkica
+import java.awt.Graphics; 
 import java.util.ArrayList;
-import java.util.HashMap; //nema na projektu 
+import java.util.HashMap; 
 import java.util.Iterator;
 
-import javax.swing.JPanel; //ctrl+shift+o
+import javax.swing.JPanel; 
 
-import geometry.Circle; //zbog dole iscrtavanja 
+import geometry.Circle; 
 import geometry.Donut;
 import geometry.Line;
 import geometry.Point;
@@ -26,7 +26,7 @@ public class DrawingPanel extends JPanel { // JPanel je ugradjena Java klasa
 		super.paint(g);    //poziva metodu paint iz JPanel, da bi brisao prethodni sadrzaj i prebojio pozadinu panela
 		
 		Circle circle1 = new Circle(new Point(100,200), 50);
-		circle1.draw(g);        //poziva draw iz circle
+		circle1.draw(g);        
 		
 		
 		
