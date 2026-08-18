@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import geometry.Circle;
+import geometry.Donut;
 import geometry.Line;
 import geometry.Point;
 import geometry.Rectangle;
@@ -134,7 +135,26 @@ public class FrmDrawing extends JFrame {
 						newCircle.setInnerColor(Circle.btnInnerColor.getBackground());
 						panel.addShape(newCircle);
 					}
+				}else if(action == "Donut") {
+					startPoint = null;
+					DlgDonut Donut = new DlgDonut();
+					Donut.txtX.setText(Integer.toString(e.getX()));
+					Donut.txtY.setText(Integer.toString(e.getY()));
+					Donut.setVisible(true);
+					if(Donut.isOk) {
+						String X = Donut.txtX.getText();
+						String Y = Donut.txtY.getText();
+						String Radius = Donut.txtRadius.getText();
+						String innerRadius = Donut.txtinnerRadius.getText();
+						Point newPoint = new Point(Integer.parseInt(X), Integer.parseInt(Y));
+						Donut newDonut = new Donut(newPoint,Integer.parseInt(Radius), Integer.parseInt(innerRadius));
+						newDonut.setColor(Donut.btnColor.getBackground());
+						newDonut.setInnerColor(Donut.btnInnerColor.getBackground());
+						panel.addShape(newDonut);
+					}
+					
 				}
+				
 			}
 		});
 		contentPane.add(panel, BorderLayout.CENTER);

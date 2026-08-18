@@ -67,8 +67,13 @@ public class Donut extends Circle{
 	@Override
 	public void draw(Graphics g) {
 		super.draw(g);
-		g.drawOval(center.getX()-innerRadius, center.getY()-innerRadius, 
-		        innerRadius*2, innerRadius*2);
+		g.setColor(innerColor);
+        g.fillOval(getCenter().getX()-radius, super.getCenter().getY()-radius,radius*2, radius*2);
+        g.setColor(Color.WHITE);
+        g.fillOval(getCenter().getX()-innerRadius, super.getCenter().getY()-innerRadius,innerRadius*2, innerRadius*2);
+        g.setColor(color);
+        g.drawOval(getCenter().getX()-radius, super.getCenter().getY()-radius,radius*2, radius*2);
+        g.drawOval(getCenter().getX()-innerRadius, super.getCenter().getY()-innerRadius,innerRadius*2, innerRadius*2);
 		
 		if (isSelected()) {
 			g.setColor(Color.BLUE);

@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class Circle extends Shape {
 	
 	protected Point center; // nije nasledjivanje vec komponovanje
-	private int radius;
+	protected int radius;
 	
 	public Circle() {
 		
