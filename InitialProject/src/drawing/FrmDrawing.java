@@ -243,7 +243,31 @@ public class FrmDrawing extends JFrame {
                             panel.selectShape(-1, -1);
 						}
 					
+					}else if(panel.selectedShape instanceof Line) {
+						Line selectedLine = (Line) panel.selectedShape;
+						DlgLine Line = new DlgLine();
+						Line.txtX.setText(Integer.toString(selectedLine.getStartPoint().getX()));
+						Line.txtY.setText(Integer.toString(selectedLine.getStartPoint().getY()));
+						Line.txtX2.setText(Integer.toString(selectedLine.getEndPoint().getX()));
+						Line.txtY2.setText(Integer.toString(selectedLine.getEndPoint().getY()));
+						Line.btnColor.setBackground(selectedLine.getColor());
+						Line.setVisible(true);
+						if (Line.isOk) {
+							  int x = Integer.parseInt(Line.txtX.getText());
+	                            int y = Integer.parseInt(Line.txtY.getText());
+	                            int x2 = Integer.parseInt(Line.txtX2.getText());
+	                            int y2 = Integer.parseInt(Line.txtY2.getText());
+	                            Color color = Line.btnColor.getBackground();
+	                            panel.selectedShape.moveTo(x, y);
+	                            selectedLine.setEndPoint(new Point(x2,y2));
+	                            panel.selectedShape.setColor(color);
+	                            panel.selectShape(-1, -1);
+						}
+						
+						
 					}
+				
+					
 				}
 			
 			}
