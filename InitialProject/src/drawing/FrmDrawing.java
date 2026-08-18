@@ -52,6 +52,7 @@ public class FrmDrawing extends JFrame {
 	 * Create the frame.
 	 */
 	public FrmDrawing() {
+		setTitle("Katarina Susnjevic IT 3/2025");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -344,6 +345,19 @@ public class FrmDrawing extends JFrame {
 		panel_1.add(BtnModify);
 		
 		JButton BtnDelete = new JButton("Delete");
+		BtnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(panel.selectedShape == null) {
+                    JOptionPane.showMessageDialog(null, "There is no selected object to delete!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else {
+                    int dialog = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected object?", "Warning", JOptionPane.YES_NO_OPTION);
+                    if(dialog == JOptionPane.YES_OPTION) {
+                        panel.deleteShape();
+                    }
+                }
+			}
+		});
 		panel_1.add(BtnDelete);
 
 	}

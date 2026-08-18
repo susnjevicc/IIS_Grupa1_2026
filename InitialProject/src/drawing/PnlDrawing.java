@@ -13,6 +13,7 @@ public class PnlDrawing extends JPanel {
 	private static final long serialVersionUID = 1L;
 	protected ArrayList <Shape> ShapeList = new ArrayList();
 	protected Shape selectedShape;
+	protected int selectedIndex;
 	
 
 	/**
@@ -44,11 +45,18 @@ public class PnlDrawing extends JPanel {
             if(ShapeList.get(i).contains(x, y)) {
             	ShapeList.get(i).setSelected(true);
             	selectedShape = ShapeList.get(i);
+            	selectedIndex = i;
                 break;
             }
         }
         paint(getGraphics());
         
+    }
+	
+	protected void deleteShape() {
+        selectedShape = null;
+        ShapeList.remove(selectedIndex);
+        paint(getGraphics());
     }
 
 	
