@@ -3,6 +3,7 @@ package drawing;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -13,6 +14,7 @@ import geometry.Point;
 import geometry.Rectangle;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
@@ -220,6 +222,32 @@ public class FrmDrawing extends JFrame {
 		panel_1.add(BtnSelect);
 		
 		JButton BtnModify = new JButton("Modify");
+		BtnModify.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (panel.selectedShape == null) {
+					JOptionPane.showMessageDialog(null, "There is no selected object to modify!", "Error", JOptionPane.ERROR_MESSAGE);
+				}else {
+					if (panel.selectedShape instanceof Point) {
+						Point selectedPoint = (Point) panel.selectedShape;
+						DlgPoint Point = new DlgPoint();
+						Point.txtX.setText(Integer.toString(selectedPoint.getX()));
+						Point.txtY.setText(Integer.toString(selectedPoint.getY()));
+						Point.btnColor.setBackground(selectedPoint.getColor());
+						Point.setVisible(true);
+						if (Point.isOk) {
+							int x = Integer.parseInt(Point.txtX.getText());
+                            int y = Integer.parseInt(Point.txtY.getText());
+                            Color color = Point.btnColor.getBackground();
+                            panel.selectedShape.moveTo(x, y);
+                            panel.selectedShape.setColor(color);
+                            panel.selectShape(-1, -1);
+						}
+					
+					}
+				}
+			
+			}
+		});
 		panel_1.add(BtnModify);
 		
 		JButton BtnDelete = new JButton("Delete");
