@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import geometry.Line;
 import geometry.Point;
+import geometry.Rectangle;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -99,6 +100,23 @@ public class FrmDrawing extends JFrame {
 						}
 						startPoint = null;
 					}
+				}else if(action == "Rectangle") {
+					startPoint = null;
+					DlgRectangle Rectangle = new DlgRectangle();
+					Rectangle.txtX.setText(Integer.toString(e.getX()));
+					Rectangle.txtY.setText(Integer.toString(e.getY()));
+					Rectangle.setVisible(true);
+					if(Rectangle.isOk) {
+						String X = Rectangle.txtX.getText();
+						String Y = Rectangle.txtY.getText();
+						String Width = Rectangle.txtWidth.getText();
+						String Height = Rectangle.txtHeight.getText();
+						Point newPoint = new Point(Integer.parseInt(X), Integer.parseInt(Y));
+						Rectangle newRectangle = new Rectangle(newPoint,Integer.parseInt(Width), Integer.parseInt(Height));
+						newRectangle.setColor(Rectangle.btnColor.getBackground());
+						newRectangle.setInnerColor(Rectangle.btnInnerColor.getBackground());
+						panel.addShape(newRectangle);
+					}
 				}
 			}
 		});
@@ -127,6 +145,11 @@ public class FrmDrawing extends JFrame {
 		panel_1.add(BtnLine);
 		
 		JToggleButton BtnRectangle = new JToggleButton("Rectangle");
+		BtnRectangle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				action = "Rectangle";
+			}
+		});
 		buttonGroup.add(BtnRectangle);
 		panel_1.add(BtnRectangle);
 		

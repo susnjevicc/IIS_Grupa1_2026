@@ -14,7 +14,7 @@ public class Rectangle extends Shape{
 		
 	}
 	
-	public Rectangle(Point upperLeftpoint, int width, int height) {
+	public Rectangle(Point upperLeftPoint, int width, int height) {
 		this.upperLeftPoint = upperLeftPoint;
 		this.width = width;
 		this.height = height;
@@ -67,8 +67,14 @@ public class Rectangle extends Shape{
 	
 	@Override
 	public void draw(Graphics g) {
+		g.setColor(innerColor);
+		g.fillRect(upperLeftPoint.getX(), upperLeftPoint.getY(),
+				width, height);
+		g.setColor(color);
 		g.drawRect(upperLeftPoint.getX(), upperLeftPoint.getY(),
 				width, height);
+		
+		
 		
 		if (isSelected()) {
 			g.setColor(Color.blue);

@@ -9,7 +9,16 @@ public abstract class Shape implements Moveable, Comparable{   //comparable da b
 	//koristicemo protected umesto private da ne bismo menjali ostale konstruktore
 	protected boolean selected;
 	protected Color color;
+	protected Color innerColor;
 	
+	public Color getInnerColor() {
+		return innerColor;
+	}
+
+	public void setInnerColor(Color innerColor) {
+		this.innerColor = innerColor;
+	}
+
 	public Color getColor() {
 		return color;
 	}
