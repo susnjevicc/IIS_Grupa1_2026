@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import geometry.Circle;
 import geometry.Line;
 import geometry.Point;
 import geometry.Rectangle;
@@ -117,6 +118,22 @@ public class FrmDrawing extends JFrame {
 						newRectangle.setInnerColor(Rectangle.btnInnerColor.getBackground());
 						panel.addShape(newRectangle);
 					}
+				}else if(action == "Circle"){
+					startPoint = null;
+					DlgCircle Circle = new DlgCircle();
+					Circle.txtX.setText(Integer.toString(e.getX()));
+					Circle.txtY.setText(Integer.toString(e.getY()));
+					Circle.setVisible(true);
+					if(Circle.isOk) {
+						String X = Circle.txtX.getText();
+						String Y = Circle.txtY.getText();
+						String Radius = Circle.txtRadius.getText();
+						Point newPoint = new Point(Integer.parseInt(X), Integer.parseInt(Y));
+						Circle newCircle = new Circle(newPoint,Integer.parseInt(Radius));
+						newCircle.setColor(Circle.btnColor.getBackground());
+						newCircle.setInnerColor(Circle.btnInnerColor.getBackground());
+						panel.addShape(newCircle);
+					}
 				}
 			}
 		});
@@ -154,10 +171,20 @@ public class FrmDrawing extends JFrame {
 		panel_1.add(BtnRectangle);
 		
 		JToggleButton BtnCircle = new JToggleButton("Circle");
+		BtnCircle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				action = "Circle";
+			}
+		});
 		buttonGroup.add(BtnCircle);
 		panel_1.add(BtnCircle);
 		
 		JToggleButton BtnDonut = new JToggleButton("Donut");
+		BtnDonut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				action = "Donut";
+			}
+		});
 		buttonGroup.add(BtnDonut);
 		panel_1.add(BtnDonut);
 		

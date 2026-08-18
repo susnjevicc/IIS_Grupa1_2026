@@ -58,7 +58,12 @@ public class Circle extends Shape {
 	
 	@Override
 	public void draw(Graphics g) {    //nije rucno, overridujem da bi svaki draw crtao figuru za sebe 
+		g.setColor(innerColor);
+		g.fillOval(center.getX()-radius, center.getY()-radius, radius*2, radius*2);
+		g.setColor(color);
 		g.drawOval(center.getX()-radius, center.getY()-radius, radius*2, radius*2);
+		
+	
 		//x ulevo, y nagore
 		
 		if(isSelected()) {
