@@ -153,6 +153,8 @@ public class FrmDrawing extends JFrame {
 						panel.addShape(newDonut);
 					}
 					
+				}else if(action == "Select") {
+					panel.selectShape(e.getX(), e.getY());
 				}
 				
 			}
@@ -209,6 +211,11 @@ public class FrmDrawing extends JFrame {
 		panel_1.add(BtnDonut);
 		
 		JToggleButton BtnSelect = new JToggleButton("Select");
+		BtnSelect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				action = "Select";
+			}
+		});
 		buttonGroup.add(BtnSelect);
 		panel_1.add(BtnSelect);
 		

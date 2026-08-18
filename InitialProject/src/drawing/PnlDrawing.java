@@ -35,5 +35,22 @@ public class PnlDrawing extends JPanel {
         paint(getGraphics());
     }
 	
+	protected void selectShape(int x, int y) {
+        if(selectedShape != null) {
+            selectedShape.setSelected(false);
+        }
+        selectedShape = null;
+        for(int i = ShapeList.size()-1; i >= 0; i--) {
+            if(ShapeList.get(i).contains(x, y)) {
+            	ShapeList.get(i).setSelected(true);
+            	selectedShape = ShapeList.get(i);
+                break;
+            }
+        }
+        paint(getGraphics());
+        
+    }
+
+	
 	
 }
