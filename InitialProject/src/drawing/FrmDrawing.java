@@ -289,6 +289,30 @@ public class FrmDrawing extends JFrame {
 	                            panel.selectedShape.setInnerColor(innerColor);
 	                            panel.selectShape(-1, -1);
 						}
+					}else if(panel.selectedShape instanceof Donut) {
+						Donut selectedDonut = (Donut) panel.selectedShape;
+						DlgDonut Donut = new DlgDonut();
+						Donut.txtX.setText(Integer.toString(selectedDonut.getCenter().getX()));
+						Donut.txtY.setText(Integer.toString(selectedDonut.getCenter().getY()));
+						Donut.txtRadius.setText(Integer.toString(selectedDonut.getRadius()));
+						Donut.txtinnerRadius.setText(Integer.toString(selectedDonut.getInnerRadius()));
+						Donut.btnColor.setBackground(selectedDonut.getColor());
+						Donut.btnInnerColor.setBackground(selectedDonut.getInnerColor());
+						Donut.setVisible(true);
+						if (Donut.isOk) {
+							  int x = Integer.parseInt(Donut.txtX.getText());
+	                            int y = Integer.parseInt(Donut.txtY.getText());
+	                            int radius = Integer.parseInt(Donut.txtRadius.getText());
+	                            int innerRadius = Integer.parseInt(Donut.txtinnerRadius.getText());
+	                            Color color = Donut.btnColor.getBackground();
+	                            Color innerColor = Donut.btnInnerColor.getBackground();
+	                            panel.selectedShape.moveTo(x, y);
+	                            selectedDonut.setRadius(radius);
+	                            selectedDonut.setInnerRadius(innerRadius);
+	                            panel.selectedShape.setColor(color);
+	                            panel.selectedShape.setInnerColor(innerColor);
+	                            panel.selectShape(-1, -1);
+						}
 					}
 				
 					

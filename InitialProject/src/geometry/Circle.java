@@ -129,11 +129,8 @@ public class Circle extends Shape {
 	}
 	
 	
-	public void setRadius(int radius) throws Exception{
-		if(radius < 0) {
-			Exception e = new Exception("Radius mora biti veci od 0");
-			throw e;
-		}
+	public void setRadius(int radius) {
+		
 		this.radius = radius;
 	}
 	
