@@ -313,6 +313,27 @@ public class FrmDrawing extends JFrame {
 	                            panel.selectedShape.setInnerColor(innerColor);
 	                            panel.selectShape(-1, -1);
 						}
+					}else if(panel.selectedShape instanceof Circle) {
+						Circle selectedCircle = (Circle) panel.selectedShape;
+						DlgCircle Circle = new DlgCircle();
+						Circle.txtX.setText(Integer.toString(selectedCircle.getCenter().getX()));
+						Circle.txtY.setText(Integer.toString(selectedCircle.getCenter().getY()));
+						Circle.txtRadius.setText(Integer.toString(selectedCircle.getRadius()));
+						Circle.btnColor.setBackground(selectedCircle.getColor());
+						Circle.btnInnerColor.setBackground(selectedCircle.getInnerColor());
+						Circle.setVisible(true);
+						if (Circle.isOk) {
+							  int x = Integer.parseInt(Circle.txtX.getText());
+	                            int y = Integer.parseInt(Circle.txtY.getText());
+	                            int radius = Integer.parseInt(Circle.txtRadius.getText());
+	                            Color color = Circle.btnColor.getBackground();
+	                            Color innerColor = Circle.btnInnerColor.getBackground();
+	                            panel.selectedShape.moveTo(x, y);
+	                            selectedCircle.setRadius(radius);
+	                            panel.selectedShape.setColor(color);
+	                            panel.selectedShape.setInnerColor(innerColor);
+	                            panel.selectShape(-1, -1);
+						}
 					}
 				
 					
