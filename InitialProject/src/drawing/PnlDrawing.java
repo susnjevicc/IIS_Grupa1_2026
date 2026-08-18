@@ -1,5 +1,6 @@
 package drawing;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class PnlDrawing extends JPanel {
 	 * Create the panel.
 	 */
 	public PnlDrawing() {
-
+		setBackground(Color.white);
 	}
 
 	public void paint(Graphics g) {
@@ -27,4 +28,12 @@ public class PnlDrawing extends JPanel {
 			shape.draw(g);
 		}
 	}
+	
+	
+	protected void addShape(Shape shape) {
+        ShapeList.add(shape);
+        paint(getGraphics());
+    }
+	
+	
 }
