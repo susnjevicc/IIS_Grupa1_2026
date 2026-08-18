@@ -265,6 +265,30 @@ public class FrmDrawing extends JFrame {
 						}
 						
 						
+					}else if(panel.selectedShape instanceof Rectangle) {
+						Rectangle selectedRectangle= (Rectangle) panel.selectedShape;
+						DlgRectangle Rectangle = new DlgRectangle();
+						Rectangle.txtX.setText(Integer.toString(selectedRectangle.getUpperLeftPoint().getX()));
+						Rectangle.txtY.setText(Integer.toString(selectedRectangle.getUpperLeftPoint().getY()));
+						Rectangle.txtWidth.setText(Integer.toString(selectedRectangle.getWidth()));
+						Rectangle.txtHeight.setText(Integer.toString(selectedRectangle.getHeight()));
+						Rectangle.btnColor.setBackground(selectedRectangle.getColor());
+						Rectangle.btnInnerColor.setBackground(selectedRectangle.getInnerColor());
+						Rectangle.setVisible(true);
+						if (Rectangle.isOk) {
+							  int x = Integer.parseInt(Rectangle.txtX.getText());
+	                            int y = Integer.parseInt(Rectangle.txtY.getText());
+	                            int width = Integer.parseInt(Rectangle.txtWidth.getText());
+	                            int height = Integer.parseInt(Rectangle.txtHeight.getText());
+	                            Color color = Rectangle.btnColor.getBackground();
+	                            Color innerColor = Rectangle.btnInnerColor.getBackground();
+	                            panel.selectedShape.moveTo(x, y);
+	                            selectedRectangle.setWidth(width);
+	                            selectedRectangle.setHeight(height);
+	                            panel.selectedShape.setColor(color);
+	                            panel.selectedShape.setInnerColor(innerColor);
+	                            panel.selectShape(-1, -1);
+						}
 					}
 				
 					
