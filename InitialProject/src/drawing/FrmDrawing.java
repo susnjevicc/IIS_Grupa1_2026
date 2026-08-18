@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import geometry.Line;
 import geometry.Point;
 
 import java.awt.BorderLayout;
@@ -24,6 +25,7 @@ public class FrmDrawing extends JFrame {
 	private JPanel contentPane;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String action;
+	private Point startPoint = null;  //za Line
 
 	/**
 	 * Launch the application.
@@ -57,6 +59,7 @@ public class FrmDrawing extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (action == "Point") {
+					startPoint = null;
 					DlgPoint Point = new DlgPoint();
 					Point.txtX.setText(Integer.toString(e.getX()));
 					Point.txtY.setText(Integer.toString(e.getY()));
@@ -68,6 +71,33 @@ public class FrmDrawing extends JFrame {
 						newPoint.setColor(Point.btnColor.getBackground());
 						panel.addShape(newPoint);
 						
+					}
+					
+				}else if(action == "Line"){
+					if(startPoint == null) {
+                        startPoint = new Point(e.getX(), e.getY());
+                    }
+					else {
+						DlgLine Line = new DlgLine();
+						Line.txtX.setText(Integer.toString(startPoint.getX()));
+						Line.txtY.setText(Integer.toString(startPoint.getY()));
+						Line.txtX2.setText(Integer.toString(e.getX()));
+						Line.txtY2.setText(Integer.toString(e.getY()));
+						Line.setVisible(true);
+						if(Line.isOk) {
+							String X = Line.txtX.getText();
+							String Y = Line.txtY.getText();
+							String X2 = Line.txtX2.getText();
+							String Y2 = Line.txtY2.getText();
+							Point newPoint = new Point(Integer.parseInt(X), Integer.parseInt(Y));
+							Point endPoint = new Point(Integer.parseInt(X2), Integer.parseInt(Y2));
+							Line newLine = new Line(startPoint, endPoint);
+							newLine.setColor(Line.btnColor.getBackground());
+							panel.addShape(newLine);
+							
+							
+						}
+						startPoint = null;
 					}
 				}
 			}
@@ -88,6 +118,11 @@ public class FrmDrawing extends JFrame {
 		panel_1.add(BtnPoint);
 		
 		JToggleButton BtnLine = new JToggleButton("Line");
+		BtnLine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				action = "Line";
+			}
+		});
 		buttonGroup.add(BtnLine);
 		panel_1.add(BtnLine);
 		
