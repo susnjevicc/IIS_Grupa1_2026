@@ -125,7 +125,4 @@ public class Point extends Shape{
 	
 	
 	
-	
-
-
 }

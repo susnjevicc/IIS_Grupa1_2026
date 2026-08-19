@@ -7,4 +7,5 @@ public interface Moveable {
 	
 	//nema konstruktore 
 
+	
 }

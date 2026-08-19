@@ -113,4 +113,5 @@ public class DrawingPanel extends JPanel { // JPanel je ugradjena Java klasa
 	Point p2 = new Point(200, 300, false);g.setColor(Color.green);p.draw(g);p.setSelected(true);p.draw(g);
 
 	}
+	
 }

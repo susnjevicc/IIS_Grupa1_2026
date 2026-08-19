@@ -50,6 +50,5 @@ public abstract class Shape implements Moveable, Comparable{   //comparable da b
 	}
 	
 	
-	
 
 }

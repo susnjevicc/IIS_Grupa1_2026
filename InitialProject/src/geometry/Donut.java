@@ -114,6 +114,5 @@ public class Donut extends Circle{
 		this.innerRadius = innerRadius;
 	}
 	
-	
 
 }

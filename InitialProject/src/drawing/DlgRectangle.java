@@ -233,4 +233,5 @@ public class DlgRectangle extends JDialog {
 		}
 	}
 
+	
 }

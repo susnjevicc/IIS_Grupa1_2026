@@ -183,4 +183,5 @@ public class FrmStack extends JFrame {
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 	}
 
+	
 }

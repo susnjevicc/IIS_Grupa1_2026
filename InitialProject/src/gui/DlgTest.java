@@ -185,4 +185,5 @@ public class DlgTest extends JDialog {
 		this.txtBlue = txtBlue;
 	}
 
+	
 }

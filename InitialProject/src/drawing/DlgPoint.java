@@ -174,4 +174,5 @@ public class DlgPoint extends JDialog {
 	protected JButton getBtnColor() {
 		return btnColor;
 	}
+	
 }

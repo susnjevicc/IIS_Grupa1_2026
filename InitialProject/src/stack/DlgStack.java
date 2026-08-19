@@ -267,4 +267,5 @@ public class DlgStack extends JDialog {
 		this.isOk = isOk;
 	}
 
+	
 }

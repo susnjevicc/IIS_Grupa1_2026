@@ -213,4 +213,5 @@ public class DlgCircle extends JDialog {
 			}
 		}
 	}
+	
 }

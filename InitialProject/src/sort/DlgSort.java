@@ -267,4 +267,5 @@ public class DlgSort extends JDialog {
 		this.isOk = isOk;
 	}
 
+	
 }
