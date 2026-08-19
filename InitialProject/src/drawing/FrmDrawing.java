@@ -213,17 +213,19 @@ public class FrmDrawing extends JFrame {
 		buttonGroup.add(BtnDonut);
 		panel_1.add(BtnDonut);
 		
-		JToggleButton BtnSelect = new JToggleButton("Select");
-		BtnSelect.addActionListener(new ActionListener() {
+		JToggleButton btnSelect = new JToggleButton("Select");
+		btnSelect.setBackground(Color.green);
+		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				action = "Select";
 			}
 		});
-		buttonGroup.add(BtnSelect);
-		panel_1.add(BtnSelect);
+		buttonGroup.add(btnSelect);
+		panel_1.add(btnSelect);
 		
-		JButton BtnModify = new JButton("Modify");
-		BtnModify.addActionListener(new ActionListener() {
+		JButton btnModify = new JButton("Modify");
+		btnModify.setBackground(Color.yellow);
+		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (panel.selectedShape == null) {
 					JOptionPane.showMessageDialog(null, "There is no selected object to modify!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -342,10 +344,11 @@ public class FrmDrawing extends JFrame {
 			
 			}
 		});
-		panel_1.add(BtnModify);
+		panel_1.add(btnModify);
 		
-		JButton BtnDelete = new JButton("Delete");
-		BtnDelete.addActionListener(new ActionListener() {
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setBackground(new Color(255,102,102));
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(panel.selectedShape == null) {
                     JOptionPane.showMessageDialog(null, "There is no selected object to delete!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -358,7 +361,7 @@ public class FrmDrawing extends JFrame {
                 }
 			}
 		});
-		panel_1.add(BtnDelete);
+		panel_1.add(btnDelete);
 
 	}
 
